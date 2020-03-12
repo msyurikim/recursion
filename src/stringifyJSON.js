@@ -15,7 +15,7 @@ var stringifyJSON = function(obj) {
   //use recursion to handle nested array/object
   //input is array
   if (Array.isArray(obj)) {
-    /** 
+    /**
      * similar solution to example using while loop:
     var str = '[';
     while (obj.length) {
@@ -24,23 +24,33 @@ var stringifyJSON = function(obj) {
     }
     return str + ']';
     */
-    
-    //array -> array of strings (using recursion + map) 
+
+    //array -> array of strings (using recursion + map)
     //array --> 1 string, join w/ comma (default)
     return '[' + obj.map(o => stringifyJSON(o)).join() + ']';
   }
 
   //input is object, account for null object above
   if (typeof obj === 'object') {
+    /**
     var str = '{';
     for (var key in obj) {
       if (typeof obj[key] === 'undefined' || typeof obj[key] === 'function') continue;
-      var pair = stringifyJSON(key) + ':' + stringifyJSON(obj[key]);
-      str += pair;
+      str +=  stringifyJSON(key) + ':' + stringifyJSON(obj[key]);
       delete obj[key];
       if (Object.keys(obj).length !== 0 ) str += ',';
     }
     return str + '}';
+    */
+    var result = [];
+    //Object.keys = array
+    Object.keys(obj).forEach(function(key) {
+      var value = stringifyJSON(obj[key]);
+      if (value !== null && value !== undefined) {
+        result.push(stringifyJSON(key) + ':' + value);
+      }
+    });
+    return '{' + result.join() + '}';
   }
 
 };
