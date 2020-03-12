@@ -7,33 +7,6 @@
 
 // But instead we're going to implement it from scratch:
 
-/**
- * var getElementsByClassName = function(className
-  ) {
-    // your code here
-    var arrayElements = [];
-    var recursiveSearch = function(parent) {
-      for (let node of parent.childNodes) {
-        if (node.classList && node.classList.contains(className)) {
-          arrayElements.push(node);
-          }
-        if (node.hasChildNodes) {
-            /**
-             *  for (var i = 0; i < node.childNodes.length; i++) {
-              recursiveSearch(node.childNodes[i]);
-            }
-             //
-           
-            recursiveSearch(node);
-        }
-      }  
-    };
-    recursiveSearch(document.body);
-    return arrayElements; 
-  };
-  };
- */
-
 
 var getElementsByClassName = function(className) {
   var arrayElements = []
